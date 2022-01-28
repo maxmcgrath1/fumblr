@@ -5,7 +5,7 @@ const methodOverride = require('method-override');
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-require('./config/db.connection')
+// require('./config/db.connection')
 
 const PORT = process.env.PORT || 4000
 
