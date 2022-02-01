@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
-const { User, Content } = require('../models');
+const { User } = require('../models');
 
 
 
@@ -63,7 +63,7 @@ router.post('/login', async function (req, res) {
             id: foundUser._id,
             username: foundUser.email
         };
-        const foundContent = await Content.find({})
+        // const foundContent = await Content.find({})
 
         console.log(req.session.currentUser)
         const foundUsr = await req.session.currentUser.id
@@ -98,4 +98,19 @@ router.get('/logout', async function (req, res) {
     }
 })
 
+router.get('/:userId/edit', async (req, res, next) => {
+    try {
+        const foundUser = await User.findOne(req.params._id)
+        if(!foundUser) return res.send("Cannot find that user!! o(≧口≦)o ")
+        console.log(foundUser)
+        const context = {
+            currentUser: foundUser
+        }
+
+        res.render('accountsettings.ejs', context)
+    } catch (error) {
+        console.log(error)
+        return res.send(error)
+    }
+})
 module.exports = router;

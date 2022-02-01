@@ -1,4 +1,5 @@
 const express = require('express');
+const res = require('express/lib/response');
 const router = express.Router();
 const { Blog, Content, User } = require('../models');
 
@@ -39,15 +40,21 @@ router.get('/dashboard', async function (req, res, next) {
         const foundContent = await Content.find({})
         if (!foundContent) return res.send('Cant find content!')
         const foundUsers = await User.find({})
-        const userSes = req.sessionID
-    const foundUser = await User.find({currentSession: userSes})
+        const foundUser = await User.find({currentSession: req.sessionID})
+        if (!foundUser) return res.redirect('/user/login')
+        console.log("Hey hey, The user is: " + foundUser)
+        const foundBlogs = await Blog.find({});
+        const foundBlog = await Blog.findOne({_id: foundUser[0].blog})
+        console.log("Hey hey, found the blog, its: " + foundBlog)
         const context = { 
             content: foundContent,
             allUsers: foundUsers,
-            user: foundUser
+            currentUser: foundUser,
+            allBlogs: foundBlogs,
+            currentBlog: foundBlog
         }
-        
-        console.log('Im testing foundUser:' + " " + foundUser)
+        // console.log(context)
+        // console.log('Im testing foundUser:' + " " + foundUser)
         res.render('dashboard.ejs', context)
     } catch (err) {
         console.log(err);
@@ -55,6 +62,7 @@ router.get('/dashboard', async function (req, res, next) {
         return next();
     }
 })
+
 
 // router.get('/:blogId', (req, res) => {
     
@@ -70,21 +78,21 @@ router.get('/dashboard', async function (req, res, next) {
     
 // });
 
-// router.get('/:blogId', async function (req, res, next) {
-//     try {
-//         const foundBlog = await Blog.findOne({req:params._id})
-//         if (!foundBlog) return res.send('Oh, no.. I cant find the blog 😨');
-//         const foundContent = await Blog.content.find({})
-//         if (!foundContent) return res.send('uh...no content  ಥ _ ಥ  ')
-//         const context = {
-//             blog: foundBlog,
-//             content: foundContent
-//         }
-//         res.render('blog.ejs', context)
-//     } catch(err) {
-//         console.log(err);
-//         return res.send(err);
-//     }
-// })
+router.get('/:blogId', async (req, res, next) => {
+    try {
+        const foundBlog = await Blog.findById({_id:req.params.blogId})
+        console.log(foundBlog)
+        if (!foundBlog) return res.send('Oh, no.. I cant find the blog 😨');
+        // const foundContent = await Blog.content.find({})
+        // if (!foundContent) return res.send('uh...no content  ಥ _ ಥ  ')
+        const context = {
+            blog: foundBlog
+        }
+        res.render('blog.ejs', context )
+    } catch(err) {
+        console.log(err);
+        return res.send(err);
+    }
+})
 
 module.exports = router;

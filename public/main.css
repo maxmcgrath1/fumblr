@@ -183,7 +183,6 @@ hr.title {
 .sidebar {
     width: 30%;
     margin: 40px 40px 40px 20px;
-    position: sticky;
 }
 .sidebartitle {
     color: rgb(194, 194, 194)
@@ -390,6 +389,10 @@ h3.postchat {
 #smallmargin {
     margin: 10px 0px;
 }
+.notes {
+    display: flex;
+    justify-content: flex-start;
+}
 #notes {
     font-size: large;
     color: rgb(237, 237, 237);
@@ -410,14 +413,14 @@ h3.postchat {
 }
 .actionbaritems {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     width: 250px;
-    padding: 5px;
+    margin: 8.5px 10px;
 }
 .actionbaritem {
     width: 30px;
-    filter: invert(100%);
+    margin: 0px 10px;
 }
 .postquote {
     padding: 10px;
@@ -448,7 +451,6 @@ form.trash {
 }
 #love:hover {
     cursor: pointer;
-    filter: drop-shadow(0rem 0rem 0.5rem rgba(0, 0, 0, 0.5)) invert(42%) sepia(71%) saturate(914%) hue-rotate(332deg) brightness(92%) contrast(84%);
 }
 #reblog:hover {
     cursor: pointer;
@@ -458,7 +460,7 @@ form.trash {
     cursor: pointer;
     filter: drop-shadow(0rem 0rem 0.5rem rgba(0, 0, 0, 0.5)) invert(66%) sepia(95%) saturate(1714%) hue-rotate(341deg) brightness(104%) contrast(90%);
 }
-#postdelete:hover {
+.trash:hover {
     cursor: pointer;
     filter: drop-shadow(0rem 0rem 0.5rem rgba(0, 0, 0, 0.5)) invert(53%) sepia(24%) saturate(200%) hue-rotate(163deg) brightness(88%) contrast(83%);
 }
@@ -600,7 +602,7 @@ form.trash {
 .origin {
     height: 30px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     padding: 5px 10px;
     background-color: rgb(214, 214, 214);
@@ -627,4 +629,38 @@ form.trash {
     padding: 10px 10px;
     height: 25px;
     width: 175px;
+}
+.postdivider {
+    color:rgb(34, 34, 34);
+    margin: inherit;
+}
+.suggestedblog {
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+}
+.suggestedblogcontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0px 0px 0px 10px;
+    color: rgb(109, 109, 109)
+}
+.suggestedblogname {
+    margin: 0%;
+}
+.suggestedblogdesc {
+    margin: 3px 0px 3px;
+}
+.suggestedblogphoto {
+    width: 80px;
+    border: none;
+    border-radius: 15px;
+}
+.hidden {
+    display: none;
+}
+.invert {
+    filter: invert(100%);
 }
