@@ -8,11 +8,9 @@
 
 ## Key features:
 
-##### Some key features of our app as of now are the ability to create seven different types of post: text, image, quote, link, chat, audio, and video. Additionally, users can register and log in and out of their accounts.
+##### Some key features of our app as of now are the ability to create seven different types of post: text, image, quote, link, chat, audio, and video. All seven of these options have full CRUD functionality. Additionally, users can register and log in and out of their accounts.
 
 ##### We have three models, each of which we are in the process of working to talk with each other. The relationship between Content and Users will more than likely change in the future as we implement reblogging. The same goes with the relationship between Users to Blogs; they currently share a 1:1 relationship, as one User can only have one Blog. However, like tumblr, we aim to give users the ability to own multiple blogs.
-
-#### We are VERY close to implementing the ability to connect user and content models to attach a user to the content, allowing for creation of products. Would take about an additional hour at most.
 
 ## Stretch features to include in future versions:
 
